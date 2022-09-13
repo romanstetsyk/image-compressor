@@ -13,20 +13,12 @@
 </head>
 
 <body>
-  <h1>hello</h1>
+  <h1>Image Compressor</h1>
   <form action="/" method="post" enctype="multipart/form-data" id="my-dropzone" class="dropzone">
     <div class="fallback">
       <input name="myfile" type="file">
     </div>
   </form>
-
-  <template id="templ">
-    <img-comparison-slider>
-      <img slot="first" src="">
-      <img slot="second" src="">
-    </img-comparison-slider>
-  </template>
-
 
   <div id="comparisons"></div>
 
@@ -55,10 +47,12 @@
               })
             });
             const data = await res.json();
-            sliderContainer.querySelector('#secondImg').src = data.imgBase64;
-            sliderContainer.querySelector('[data-newSize]').innerHTML = data.imgInfo.size;
-            sliderContainer.querySelector('#download').href = data.imgBase64;
-            console.log(data.imgInfo)
+            console.log(data);
+            sliderContainer.querySelector('[data-img2').src = data.jpegBase64;
+            sliderContainer.querySelector('[data-newSizeJpeg]').innerHTML = (data.jpegInfo.size / 1024).toFixed(2);
+            sliderContainer.querySelector('[data-newSizeWebp]').innerHTML = (data.webpInfo.size / 1024).toFixed(2);
+            sliderContainer.querySelector('[data-downloadJpeg]').href = data.jpegBase64;
+            sliderContainer.querySelector('[data-downloadWebp]').href = data.webpBase64;
           })
         });
       }

@@ -10,17 +10,25 @@ const optimize = async (req, res) => {
   console.log(pathh);
 
   const img = sharp(pathh);
-  const jpeg = img.jpeg({
+  const jpeg = img.clone().jpeg({
     quality: Number(quality),
     progressive: true,
   });
-  const { data, info } = await jpeg.toBuffer({ resolveWithObject: true });
-  console.log(info);
-  res.json({
-    imgBase64: "data:image/jpeg;base64," + data.toString("base64"),
-    imgInfo: info,
+  const webp = img.clone().webp({
+    quality: Number(quality),
   });
-  // res.json("data:image/jpeg;base64," + data.toString("base64"));
+  const { data: jpegData, info: jpegInfo } = await jpeg.toBuffer({
+    resolveWithObject: true,
+  });
+  const { data: webpData, info: webpInfo } = await webp.toBuffer({
+    resolveWithObject: true,
+  });
+  res.json({
+    jpegBase64: "data:image/jpeg;base64," + jpegData.toString("base64"),
+    webpBase64: "data:image/webp;base64," + webpData.toString("base64"),
+    jpegInfo,
+    webpInfo,
+  });
 };
 
 module.exports = optimize;
