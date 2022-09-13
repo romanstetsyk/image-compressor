@@ -2,5 +2,5 @@ node_modules
 .env
 .DS_Store
 
-tmp/*
-!tmp/.gitkeep
+public/tmp/*
+!public/tmp/.gitkeep

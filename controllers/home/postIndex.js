@@ -9,7 +9,12 @@ const postIndex = async (req, res) => {
     "showComparison.ejs",
     { src, size, originalNameWithoutExt, originalExt },
     (err, html) => {
-      res.json({ html, src, originalNameWithoutExt, originalExt });
+      res.json({
+        html,
+        src,
+        originalNameWithoutExt,
+        originalExt,
+      });
     }
   );
 };

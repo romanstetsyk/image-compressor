@@ -20,7 +20,7 @@ app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
 //Static Folder
-app.use(express.static("tmp"));
+app.use(express.static("public"));
 
 // Routes
 app.use("/", homeRouter);

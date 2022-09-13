@@ -6,7 +6,7 @@ const optimize = async (req, res) => {
   const { quality, dataId } = req.body;
   console.log(quality, dataId);
 
-  const pathh = path.join(__dirname, "../../", "tmp", dataId);
+  const pathh = path.join(__dirname, "../../", "public", "tmp", dataId);
   console.log(pathh);
 
   const img = sharp(pathh);
