@@ -6,14 +6,64 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Document</title>
+  <script src="https://unpkg.com/dropzone@5/dist/min/dropzone.min.js"></script>
+  <link rel="stylesheet" href="https://unpkg.com/dropzone@5/dist/min/dropzone.min.css" type="text/css">
+  <script defer src="https://unpkg.com/img-comparison-slider@7/dist/index.js"></script>
+  <link rel="stylesheet" href="https://unpkg.com/img-comparison-slider@7/dist/styles.css" />
 </head>
 
 <body>
   <h1>hello</h1>
-  <form action="" method="post" enctype="multipart/form-data">
-    <input type="file" name="myfile">
-    <button>Add file</button>
+  <form action="/" method="post" enctype="multipart/form-data" id="my-dropzone" class="dropzone">
+    <div class="fallback">
+      <input name="myfile" type="file">
+    </div>
   </form>
+
+  <template id="templ">
+    <img-comparison-slider>
+      <img slot="first" src="">
+      <img slot="second" src="">
+    </img-comparison-slider>
+  </template>
+
+
+  <div id="comparisons"></div>
+
+  <script>
+    Dropzone.options.myDropzone = { // camelized version of the `id`
+      paramName: "myfile", // The name that will be used to transfer the file
+      maxFilesize: 2, // MB
+      init: function () {
+        this.on("success", (file, resp) => {
+          console.log(resp);
+          console.log(file);
+          const comparisonsDiv = document.querySelector('#comparisons');
+          comparisonsDiv.insertAdjacentHTML('beforeend', resp.html)
+
+          const sliderContainer = comparisonsDiv.querySelector(`[data-id="${resp.src}"]`);
+          const form = sliderContainer.querySelector('form');
+          form.addEventListener('submit', async e => {
+            e.preventDefault();
+            const inp = form.querySelector('input')
+            const res = await fetch('/optimize', {
+              method: 'post',
+              headers: { 'Content-type': 'application/json' },
+              body: JSON.stringify({
+                'dataId': sliderContainer.dataset.id,
+                'quality': inp.value
+              })
+            });
+            const data = await res.json();
+            sliderContainer.querySelector('#secondImg').src = data.imgBase64;
+            sliderContainer.querySelector('[data-newSize]').innerHTML = data.imgInfo.size;
+            sliderContainer.querySelector('#download').href = data.imgBase64;
+            console.log(data.imgInfo)
+          })
+        });
+      }
+    };
+  </script>
 </body>
 
 </html>

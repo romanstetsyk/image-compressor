@@ -1,0 +1,17 @@
+<div data-id="<%= src %>">
+  <img-comparison-slider>
+    <img slot="first" src="<%= src %>" style="max-width: 1000px;">
+    <img slot="second" src="<%= src %>" style="max-width: 1000px;" id="secondImg">
+  </img-comparison-slider>
+  <div>
+    <p>size: <%= size %>
+    </p>
+    <p data-newSize>new size: <%= size %>
+    </p>
+  </div>
+  <form action="/optimize" method="post">
+    <input type="number" min="1" max="100" step="1" id="quality" required>
+    <button id="changeQuality">change quality</button>
+  </form>
+  <a href="" download="" id="download">download</a>
+</div>
