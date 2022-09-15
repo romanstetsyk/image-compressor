@@ -1,15 +1,24 @@
-.dropzone {
-  min-height: 0;
-  min-width: 20em;
-  max-width: fit-content;
-  border: 1px dashed black;
-  border-radius: 1rem;
-  padding: 0;
-}
+// .dropzone {
+//   min-height: 0;
+//   min-width: 20em;
+//   max-width: fit-content;
+//   border: 1px dashed black;
+//   border-radius: 1rem;
+//   padding: 0;
+// }
 
 .file-upload {
   margin: 0 auto;
   display: flex;
   justify-content: center;
   align-items: center;
+  min-width: 20em;
+  border: 1px dashed black;
+  border-radius: 1rem;
+  padding: 1rem;
+}
+
+.dz-button {
+  border: none;
+  background-color: inherit;
 }

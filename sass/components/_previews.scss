@@ -1,11 +1,20 @@
 .previews {
   margin: 0 auto;
   display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
+  flex-direction: column;
   border: 1px solid black;
 
   &:empty {
     display: none;
   }
+}
+
+.dropzone .dz-preview {
+  display: flex;
+  gap: 1rem;
+  width: auto;
+}
+
+.dz-progress {
+  min-width: 10rem;
 }
