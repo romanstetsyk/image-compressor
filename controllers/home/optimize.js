@@ -10,13 +10,20 @@ const optimize = async (req, res) => {
   console.log(pathh);
 
   const img = sharp(pathh);
-  const jpeg = img.clone().jpeg({
-    quality: Number(quality),
-    progressive: true,
-  });
-  const webp = img.clone().webp({
-    quality: Number(quality),
-  });
+  const jpeg = img
+    .clone()
+    .jpeg({
+      quality: Number(quality),
+      progressive: true,
+    })
+    .withMetadata();
+
+  const webp = img
+    .clone()
+    .webp({
+      quality: Number(quality),
+    })
+    .withMetadata();
   const { data: jpegData, info: jpegInfo } = await jpeg.toBuffer({
     resolveWithObject: true,
   });
