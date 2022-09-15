@@ -20,9 +20,12 @@ let myDropzone = new Dropzone("#my-dropzone", {
     const previewElement = file.previewElement;
     previewElement.dataset.id = file.upload.uuid;
 
-    previewElement.insertAdjacentHTML("beforeend", response.link);
+    previewElement.querySelector(".fileinfo").innerHTML = response.link;
 
     const refs = {
+      newSize: previewElement.querySelector(".newSize"),
+      newQuality: previewElement.querySelector(".newQuality"),
+      downloadJpeg: previewElement.querySelector(".downloadJpeg"),
       dialog: previewElement.querySelector("dialog"),
       openDialogBtn: previewElement.querySelector(".compare"),
       changeQualityForm: previewElement.querySelector(".changeQuality"),
@@ -36,9 +39,11 @@ let myDropzone = new Dropzone("#my-dropzone", {
 
     let currentQuality = response.quality;
     let currentSrc = response.jpegBase64;
+    let currentSize = response.newSize;
 
     let qualityFromForm = response.quality;
     let srcFromForm = response.jpegBase64;
+    let sizeFromForm = response.newSizel;
 
     refs.closeDialogBtn.addEventListener("click", () => {
       refs.dialog.returnValue = "";
@@ -54,6 +59,10 @@ let myDropzone = new Dropzone("#my-dropzone", {
       refs.dialog.close();
       currentQuality = qualityFromForm;
       currentSrc = srcFromForm;
+      currentSize = sizeFromForm;
+      refs.newSize.innerHTML = (currentSize / 1024).toFixed(2) + " Kb";
+      refs.newQuality.innerHTML = `${currentQuality} %`;
+      refs.downloadJpeg.href = currentSrc;
     });
 
     refs.dialog.addEventListener("close", () => {
@@ -76,6 +85,7 @@ let myDropzone = new Dropzone("#my-dropzone", {
 
       qualityFromForm = data.quality;
       srcFromForm = data.jpegBase64;
+      sizeFromForm = data.jpegInfo.size;
       refs.img2.src = data.jpegBase64;
     });
 

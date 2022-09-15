@@ -1,8 +1,8 @@
 <div>
   <span><%= (originalSize / 1024).toFixed(2) %> Kb</span>
-  <span><%= (newSize / 1024).toFixed(2) %> Kb</span>
-  <span><%= quality %>%</span>
-  <a href="<%= data64 %>" download="<%= originalname %>">download jpeg</a>
+  <span class="newSize"><%= (newSize / 1024).toFixed(2) %> Kb</span>
+  <span class="newQuality"><%= quality %>%</span>
+  <a class="downloadJpeg" href="<%= data64 %>" download="<%= originalname %>">download jpeg</a>
   <button class="compare">Compare</button>
   <dialog>
     <div class="wrapper">
@@ -12,7 +12,7 @@
       </img-comparison-slider>
     </div>
     <form action="/optimize" method="post" class="changeQuality">
-      <input type="number" min="1" max="100" step="1" value="<%= quality %>" name="newQuality" required>
+      <input type="number" min="1" max="100" step="1" value="<%= quality %>" required>
       <button>Change Quality</button>
     </form>
     <form method="dialog" class="dialogControl">
