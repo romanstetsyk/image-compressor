@@ -7,57 +7,34 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Document</title>
   <script src="https://unpkg.com/dropzone@5/dist/min/dropzone.min.js"></script>
-  <link rel="stylesheet" href="https://unpkg.com/dropzone@5/dist/min/dropzone.min.css" type="text/css">
+  <!-- <link rel="stylesheet" href="https://unpkg.com/dropzone@5/dist/min/dropzone.min.css" type="text/css"> -->
   <script defer src="https://unpkg.com/img-comparison-slider@7/dist/index.js"></script>
   <link rel="stylesheet" href="https://unpkg.com/img-comparison-slider@7/dist/styles.css" />
+  <link rel="stylesheet" href="css/main.min.css">
 </head>
 
 <body>
-  <h1>Image Compressor</h1>
-  <form action="/" method="post" enctype="multipart/form-data" id="my-dropzone" class="dropzone">
-    <div class="fallback">
-      <input name="myfile" type="file">
+  <section class="intro">
+    <div class="container">
+      <h1 class="title">Image Compressor</h1>
+      <div class="upload">
+        <form class="dropzone file-upload" action="/" method="post" enctype="multipart/form-data" id="my-dropzone">
+          <div class="fallback">
+            <input name="myfile" type="file">
+          </div>
+        </form>
+        <div class="dropzone previews" id="previews"></div>
+      </div>
     </div>
-  </form>
+  </section>
 
-  <div id="comparisons"></div>
+  <section class="comparisons">
+    <div class="container">
+      <div id="comparisons"></div>
+    </div>
+  </section>
 
-  <script>
-    Dropzone.options.myDropzone = { // camelized version of the `id`
-      paramName: "myfile", // The name that will be used to transfer the file
-      maxFilesize: 6, // MB
-      init: function () {
-        this.on("success", (file, resp) => {
-          console.log(resp);
-          console.log(file);
-          const comparisonsDiv = document.querySelector('#comparisons');
-          comparisonsDiv.insertAdjacentHTML('beforeend', resp.html)
-
-          const sliderContainer = comparisonsDiv.querySelector(`[data-id="${resp.src}"]`);
-          const form = sliderContainer.querySelector('form');
-          form.addEventListener('submit', async e => {
-            e.preventDefault();
-            const inp = form.querySelector('input')
-            const res = await fetch('/optimize', {
-              method: 'post',
-              headers: { 'Content-type': 'application/json' },
-              body: JSON.stringify({
-                'dataId': sliderContainer.dataset.id,
-                'quality': inp.value
-              })
-            });
-            const data = await res.json();
-            console.log(data);
-            sliderContainer.querySelector('[data-img2').src = data.jpegBase64;
-            sliderContainer.querySelector('[data-newSizeJpeg]').innerHTML = (data.jpegInfo.size / 1024).toFixed(2);
-            sliderContainer.querySelector('[data-newSizeWebp]').innerHTML = (data.webpInfo.size / 1024).toFixed(2);
-            sliderContainer.querySelector('[data-downloadJpeg]').href = data.jpegBase64;
-            sliderContainer.querySelector('[data-downloadWebp]').href = data.webpBase64;
-          })
-        });
-      }
-    };
-  </script>
+  <script src="js/dropzone.js"></script>
 </body>
 
 </html>

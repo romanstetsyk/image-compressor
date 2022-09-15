@@ -1,0 +1,28 @@
+.dropzone {
+  min-height: 0;
+  padding: 0;
+  border: none;
+  background: transparent;
+}
+
+.dropzone .dz-message {
+  margin: 0;
+  padding: 2em 0;
+}
+
+.file-upload {
+  border: 1px solid black;
+  max-width: 20rem;
+  margin: 0 auto;
+}
+
+.previews {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  border: 1px solid black;
+}
+
+.previews:empty {
+  border: none;
+}
