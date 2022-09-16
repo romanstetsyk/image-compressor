@@ -4,7 +4,7 @@ let myDropzone = new Dropzone("#my-dropzone", {
   paramName: "myfile", // The name that will be used to transfer the file
   maxFilesize: 1, // MB
   dictDefaultMessage: "Click or drop files here to upload",
-  addRemoveLinks: true,
+  addRemoveLinks: false,
   previewsContainer: "#previews",
   createImageThumbnails: false,
   previewTemplate: document.querySelector("#tmp").innerHTML,
