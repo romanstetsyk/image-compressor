@@ -3,6 +3,7 @@ Dropzone.autoDiscover = false;
 let myDropzone = new Dropzone("#my-dropzone", {
   paramName: "myfile", // The name that will be used to transfer the file
   maxFilesize: 1, // MB
+  maxFiles: 2,
   dictDefaultMessage: "Click or drop files here to upload",
   addRemoveLinks: false,
   previewsContainer: "#previews",
@@ -11,6 +12,21 @@ let myDropzone = new Dropzone("#my-dropzone", {
 
   sending: (file, xhr, formData) => {
     formData.append("uuid", file.upload.uuid);
+  },
+
+  removedfile: async file => {
+    console.log(file.upload);
+    // Delete preview
+    if (file.previewElement != null && file.previewElement.parentNode != null) {
+      file.previewElement.parentNode.removeChild(file.previewElement);
+    }
+    const res = await fetch("/deleteFile", {
+      method: "delete",
+      headers: { "Content-type": "application/json" },
+      body: JSON.stringify({
+        filename: file.filename,
+      }),
+    });
   },
 
   success: (file, response) => {
