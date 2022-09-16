@@ -2,7 +2,7 @@ const sharp = require("sharp");
 const path = require("path");
 const fs = require("fs/promises");
 
-const optimize = async (req, res) => {
+const jpeg = async (req, res) => {
   const { quality, filename } = req.body;
   console.log(quality, filename);
 
@@ -39,4 +39,4 @@ const optimize = async (req, res) => {
   });
 };
 
-module.exports = optimize;
+module.exports = jpeg;

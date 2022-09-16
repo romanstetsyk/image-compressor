@@ -5,6 +5,7 @@ const upload = require("../middleware/upload");
 
 router.get("/", homeCrtl.getIndex);
 router.post("/", upload.single("myfile"), homeCrtl.postIndex);
-router.post("/optimize", homeCrtl.optimize);
+router.post("/jpeg", homeCrtl.jpeg);
+router.post("/webp", homeCrtl.webp);
 
 module.exports = router;

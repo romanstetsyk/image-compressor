@@ -1,9 +1,11 @@
 const getIndex = require("./getIndex");
 const postIndex = require("./postIndex");
-const optimize = require("./optimize");
+const jpeg = require("./jpeg");
+const webp = require("./webp");
 
 module.exports = {
   getIndex,
   postIndex,
-  optimize,
+  jpeg,
+  webp,
 };
