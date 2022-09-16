@@ -1,45 +1,47 @@
 <span><%= (originalSize / 1024).toFixed(2) %> Kb</span>
 
-<div class="new-file-info">
-  <div data-ext="jpeg">
-    <span class="newSize"><%= (newJpegSize / 1024).toFixed(2) %> Kb</span>
-    <span class="newQuality"><%= quality %>%</span>
-    <a class="downloadJpeg" href="<%= jpegBase64 %>" download="<%= originalname %>.jpeg">download jpeg</a>
-    <button class="compare">Compare</button>
-    <dialog>
-      <img-comparison-slider>
-        <img slot="first" src="<%= src %>" data-img1>
-        <img slot="second" src="<%= jpegBase64 %>" data-img2>
-      </img-comparison-slider>
-      <form action="/optimize" method="post" class="changeQuality">
-        <input type="number" min="1" max="100" step="1" value="<%= quality %>" required>
-        <button>Change Quality</button>
-      </form>
-      <form method="dialog" class="dialogControl">
-        <button class="close">Close</button>
-        <button class="save">Save</button>
-      </form>
-    </dialog>
-  </div>
+<table class="new-file-info">
+  <tr data-ext="jpeg">
+    <td><span class="newSize"><%= (newJpegSize / 1024).toFixed(2) %> Kb</span></td>
+    <td>Quality: <span class="newQuality"><%= quality %>%</span></td>
+    <td><a class="downloadJpeg" href="<%= jpegBase64 %>" download="<%= originalname %>.jpeg">download jpeg</a></td>
+    <td><button class="compare">Compare</button>
+      <dialog>
+        <img-comparison-slider>
+          <img slot="first" src="<%= src %>" data-img1>
+          <img slot="second" src="<%= jpegBase64 %>" data-img2>
+        </img-comparison-slider>
+        <form action="/optimize" method="post" class="changeQuality">
+          <input type="number" min="1" max="100" step="1" value="<%= quality %>" required>
+          <button>Change Quality</button>
+        </form>
+        <form method="dialog" class="dialogControl">
+          <button class="close">Close</button>
+          <button class="save">Save</button>
+        </form>
+      </dialog>
+    </td>
+  </tr>
 
-  <div data-ext="webp">
-    <span class="newSize"><%= (newWebpSize / 1024).toFixed(2) %> Kb</span>
-    <span class="newQuality"><%= quality %>%</span>
-    <a class="downloadWebp" href="<%= webpBase64 %>" download="<%= originalname %>.webp">download webp</a>
-    <button class="compare">Compare</button>
-    <dialog>
-      <img-comparison-slider>
-        <img slot="first" src="<%= src %>" data-img1>
-        <img slot="second" src="<%= webpBase64 %>" data-img2>
-      </img-comparison-slider>
-      <form action="/optimize" method="post" class="changeQuality">
-        <input type="number" min="1" max="100" step="1" value="<%= quality %>" required>
-        <button>Change Quality</button>
-      </form>
-      <form method="dialog" class="dialogControl">
-        <button class="close">Close</button>
-        <button class="save">Save</button>
-      </form>
-    </dialog>
-  </div>
-</div>
+  <tr data-ext="webp">
+    <td><span class="newSize"><%= (newWebpSize / 1024).toFixed(2) %> Kb</span></td>
+    <td>Quality: <span class="newQuality"><%= quality %>%</span></td>
+    <td><a class="downloadWebp" href="<%= webpBase64 %>" download="<%= originalname %>.webp">download webp</a></td>
+    <td><button class="compare">Compare</button>
+      <dialog>
+        <img-comparison-slider>
+          <img slot="first" src="<%= src %>" data-img1>
+          <img slot="second" src="<%= webpBase64 %>" data-img2>
+        </img-comparison-slider>
+        <form action="/optimize" method="post" class="changeQuality">
+          <input type="number" min="1" max="100" step="1" value="<%= quality %>" required>
+          <button>Change Quality</button>
+        </form>
+        <form method="dialog" class="dialogControl">
+          <button class="close">Close</button>
+          <button class="save">Save</button>
+        </form>
+      </dialog>
+    </td>
+  </tr>
+</table>
