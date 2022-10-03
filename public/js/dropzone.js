@@ -15,7 +15,6 @@ let myDropzone = new Dropzone("#my-dropzone", {
   },
 
   removedfile: async file => {
-    console.log(file.upload.filename);
     // Delete preview
     if (file.previewElement != null && file.previewElement.parentNode != null) {
       file.previewElement.parentNode.removeChild(file.previewElement);
@@ -24,15 +23,16 @@ let myDropzone = new Dropzone("#my-dropzone", {
       method: "delete",
       headers: { "Content-type": "application/json" },
       body: JSON.stringify({
+        uuid: file.upload.uuid,
         filename: file.upload.filename,
       }),
     });
   },
 
   success: (file, response) => {
-    console.log(file.previewElement);
-    console.log(file);
-    console.log(response);
+    // console.log(file.previewElement);
+    // console.log(file);
+    // console.log(response);
     const previewGroup = file.previewElement;
     previewGroup.dataset.id = file.upload.uuid;
 
