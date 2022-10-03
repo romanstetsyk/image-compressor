@@ -2,8 +2,9 @@ Dropzone.autoDiscover = false;
 
 let myDropzone = new Dropzone("#my-dropzone", {
   paramName: "myfile", // The name that will be used to transfer the file
-  maxFilesize: 1, // MB
-  maxFiles: 2,
+  maxFilesize: 6, // MB
+  maxFiles: 5,
+  acceptedFiles: "image/jpeg",
   dictDefaultMessage: "Click or drop files here to upload",
   addRemoveLinks: false,
   previewsContainer: "#previews",
