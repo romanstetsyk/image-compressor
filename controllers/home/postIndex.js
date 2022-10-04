@@ -6,9 +6,6 @@ const Image = require("../../models/Image");
 const postIndex = async (req, res) => {
   const quality = 80;
 
-  console.log(req.file);
-  // console.log(req.body);
-
   const {
     filename,
     size,
@@ -18,10 +15,6 @@ const postIndex = async (req, res) => {
   const { uuid } = req.body;
   const { name: originalNameWithoutExt, ext: originalExt } =
     path.parse(originalName);
-
-  console.log(originalNameWithoutExt, originalExt);
-
-  console.log(typeof originalName, typeof uuid);
 
   const newDbRecord = await Image.create({
     originalName,

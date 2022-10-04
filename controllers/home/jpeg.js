@@ -4,10 +4,8 @@ const fs = require("fs/promises");
 
 const jpeg = async (req, res) => {
   const { quality, filename } = req.body;
-  console.log(quality, filename);
 
   const pathh = path.join(__dirname, "../../", "public", "tmp", filename);
-  console.log(pathh);
 
   const img = sharp(pathh);
   const jpeg = img
