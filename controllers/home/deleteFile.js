@@ -14,12 +14,12 @@ const deleteFile = async (req, res) => {
   );
   if (fs.existsSync(filepath)) {
     fs.unlink(filepath, err => {
-      if (err) console.log("Error deleting file");
+      if (err) console.log("Error deleting file from filesystem");
     });
   }
 
   const image = await Image.findOneAndDelete({ uuid });
-  if (!image._id) throw new Error("Error deleting the image");
+  if (!image._id) console.log("Error deleting file from db");
 
   res.json(filename);
 };
