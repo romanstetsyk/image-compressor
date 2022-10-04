@@ -2,7 +2,7 @@ name: Delete Old Files
 
 on:
   schedule:
-    - cron: "*/5 * * * *"
+    - cron: "*/30 * * * *"
 jobs:
   build:
     name: delete old files

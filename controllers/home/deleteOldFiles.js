@@ -12,9 +12,9 @@ const deleteOldFiles = async (req, res) => {
     }
 
     const images = await Image.find({
-      // files created earlier than 20 minutes ago
       // the shortest interval the task can run in Github Actions is every 5 min
-      createdAt: { $lt: new Date(Date.now() - 20 * 60 * 1000) },
+      // files created earlier than 30 minutes ago
+      createdAt: { $lt: new Date(Date.now() - 30 * 60 * 1000) },
     });
     images.forEach(async img => {
       // Delete from fs
