@@ -1,0 +1,16 @@
+name: Delete Old Files
+
+on:
+  schedule:
+    # Runs "at minute 55 past every hour" (see https://crontab.guru)
+    - cron: "*/1 * * * *"
+jobs:
+  build:
+    name: delete old files
+    runs-on: ubuntu-latest
+    steps:
+      - name: cURL request
+        run: |
+          curl --request DELETE \
+          --url 'https://image-compressor-mvp.herokuapp.com/deleteOldFiles' \
+          --header 'Authorization: Bearer ${{ secrets.DELETE_OLD_FILES_KEY }}'
