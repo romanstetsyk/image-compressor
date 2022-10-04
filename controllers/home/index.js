@@ -3,6 +3,7 @@ const postIndex = require("./postIndex");
 const jpeg = require("./jpeg");
 const webp = require("./webp");
 const deleteFile = require("./deleteFile");
+const deleteOldFiles = require("./deleteOldFiles");
 
 module.exports = {
   getIndex,
@@ -10,4 +11,5 @@ module.exports = {
   jpeg,
   webp,
   deleteFile,
+  deleteOldFiles,
 };

@@ -1,8 +1,7 @@
 const path = require("path");
 const ejs = require("ejs");
 const sharp = require("sharp");
-const fs = require("fs/promises");
-const Image = require("../../models/Images");
+const Image = require("../../models/Image");
 
 const postIndex = async (req, res) => {
   const quality = 80;

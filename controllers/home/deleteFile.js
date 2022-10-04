@@ -1,6 +1,6 @@
 const fs = require("fs");
 const path = require("path");
-const Image = require("../../models/Images");
+const Image = require("../../models/Image");
 
 const deleteFile = async (req, res) => {
   const { filename, uuid } = req.body;
