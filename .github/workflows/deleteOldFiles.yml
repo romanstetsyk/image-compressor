@@ -2,8 +2,7 @@ name: Delete Old Files
 
 on:
   schedule:
-    # Runs "at minute 55 past every hour" (see https://crontab.guru)
-    - cron: "*/1 * * * *"
+    - cron: "*/20 * * * *"
 jobs:
   build:
     name: delete old files
